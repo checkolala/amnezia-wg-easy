@@ -1,5 +1,5 @@
 # Build the control panel server
-FROM docker.io/library/node:22-alpine AS build_node_modules
+FROM docker.io/library/node:24-alpine AS build_node_modules
 
 # Update npm to latest
 RUN npm install -g npm@latest
@@ -11,7 +11,7 @@ RUN npm ci --omit=dev &&\
     mv node_modules /node_modules
 
 # Build amneziawg itself
-FROM alpine:3.21 AS build_tools
+FROM alpine:latest AS build_tools
 
 RUN apk add --no-cache git make gcc musl-dev linux-headers go
 
